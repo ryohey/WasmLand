@@ -1,14 +1,14 @@
 ﻿using System;
 using System.IO;
 using UnityEngine;
-using WebAssembly; // Acquire from https://www.nuget.org/packages/WebAssembly
+ using WebAssembly; // Acquire from https://www.nuget.org/packages/WebAssembly
 using WebAssembly.Runtime;
 
 // We need this later to call the code we're generating.
 public abstract class WasmInterface
 {
     // Sometimes you can use C# dynamic instead of building an abstract class like this.
-    public abstract void main();
+    public abstract int main();
 }
 
 public class Run : MonoBehaviour
@@ -33,13 +33,16 @@ public class Run : MonoBehaviour
                     {
                         transform.position = new Vector3(x, transform.position.y, transform.position.z);
                         Debug.Log(x);
-                    } ))}
-            });
+                    }
+                    ))}
+        });
+
+        var ptr = instance.Exports.main();
+        Debug.Log(ptr);
     }
 
     void Update()
     {
-        instance.Exports.main();
     }
 
     private void OnDestroy()
