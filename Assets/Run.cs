@@ -39,11 +39,22 @@ public class Run : MonoBehaviour
         });
 
         var ptr = instance.Exports.main();
-
-        var v = Marshal.ReadInt32(memory.Start + ptr);
-         
         Debug.Log(ptr);
-        Debug.Log(v);
+
+        var str = "";
+
+        for (var i = 0; true; i++)
+        {
+            var v = Marshal.ReadInt32(memory.Start + ptr + i * 4);
+            if (v == 0)
+            {
+                break;
+            }
+            str += (char)v;
+        }
+        Debug.Log(str);
+
+        // TODO: Call C# method from WebAssembly
     }
 
     void Update()
