@@ -120,6 +120,20 @@
             Creates a new <see cref="T:WebAssembly.Element"/> instance.
             </summary>
         </member>
+        <member name="M:WebAssembly.Element.#ctor(System.UInt32,System.UInt32[])">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Element"/> instance with the provided elements.
+            </summary>
+            <param name="offset">The zero-based offset from the start of the table where <paramref name="elements"/> are placed, retained as the <see cref="P:WebAssembly.Element.InitializerExpression"/>.</param>
+            <param name="elements">The table entries.</param>
+        </member>
+        <member name="M:WebAssembly.Element.#ctor(System.UInt32,System.Collections.Generic.IList{System.UInt32})">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Element"/> instance with the provided elements.
+            </summary>
+            <param name="offset">The zero-based offset from the start of the table where <paramref name="elements"/> are placed, retained as the <see cref="P:WebAssembly.Element.InitializerExpression"/>.</param>
+            <param name="elements">The table entries.</param>
+        </member>
         <member name="M:WebAssembly.Element.ToString">
             <summary>
             Expresses the value of this instance as a string.
@@ -161,6 +175,15 @@
             <summary>
             Creates a new <see cref="T:WebAssembly.Export"/>  instance.
             </summary>
+        </member>
+        <member name="M:WebAssembly.Export.#ctor(System.String,System.UInt32,WebAssembly.ExternalKind)">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Export"/>  instance with the provided parameters.
+            </summary>
+            <param name="name">The name of the exported item.</param>
+            <param name="index">The index into the corresponding index space.</param>
+            <param name="kind"></param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="name"/> cannot be null.</exception>
         </member>
         <member name="M:WebAssembly.Export.#ctor(WebAssembly.Reader)">
             <summary>
@@ -248,6 +271,20 @@
             Creates a new instance of <see cref="T:WebAssembly.FunctionBody"/>.
             </summary>
         </member>
+        <member name="M:WebAssembly.FunctionBody.#ctor(WebAssembly.Instruction[])">
+            <summary>
+            Creates a new instance of <see cref="T:WebAssembly.FunctionBody"/> with the provided code.
+            </summary>
+            <param name="code"></param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="code"/> cannot be null.</exception>
+        </member>
+        <member name="M:WebAssembly.FunctionBody.#ctor(WebAssembly.Local[])">
+            <summary>
+            Creates a new instance of <see cref="T:WebAssembly.FunctionBody"/> with the provided locals.
+            </summary>
+            <param name="locals"></param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="locals"/> cannot be null.</exception>
+        </member>
         <member name="M:WebAssembly.FunctionBody.ToString">
             <summary>
             Expresses the value of this instance as a string.
@@ -310,6 +347,19 @@
             Creates a new <see cref="T:WebAssembly.Global"/> instance.
             </summary>
         </member>
+        <member name="M:WebAssembly.Global.#ctor(WebAssembly.WebAssemblyValueType)">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Global"/> instance with the provided content type.
+            </summary>
+            <param name="contentType">The <see cref="P:WebAssembly.Global.ContentType"/> value.</param>
+        </member>
+        <member name="M:WebAssembly.Global.#ctor(WebAssembly.WebAssemblyValueType,WebAssembly.Instruction[])">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Global"/> instance with the provided content type and initializer expression.
+            </summary>
+            <param name="contentType">The <see cref="P:WebAssembly.Global.ContentType"/> value.</param>
+            <param name="initializerExpression">The <see cref="P:WebAssembly.Global.InitializerExpression"/> value.</param>
+        </member>
         <member name="T:WebAssembly.Import">
             <summary>
             Describes external features made available to the web assembly.
@@ -371,6 +421,14 @@
             Creates a new <see cref="T:WebAssembly.Import.Function"/> instance.
             </summary>
         </member>
+        <member name="M:WebAssembly.Import.Function.#ctor(System.String,System.String,System.UInt32)">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Import.Function"/> instance with the provided parameters.
+            </summary>
+            <param name="module">The module portion of the name.</param>
+            <param name="field">The field portion of the name.</param>
+            <param name="typeIndex">The index within the module's types that describes the function signature.</param>
+        </member>
         <member name="M:WebAssembly.Import.Function.ToString">
             <summary>
             Expresses the value of this instance as a string.
@@ -397,6 +455,23 @@
             Creates a new <see cref="T:WebAssembly.Import.Table"/> instance.
             </summary>
         </member>
+        <member name="M:WebAssembly.Import.Table.#ctor(System.String,System.String,WebAssembly.Table)">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Import.Table"/> instance with the provided parameters.
+            </summary>
+            <param name="module">The module portion of the name.</param>
+            <param name="field">The field portion of the name.</param>
+            <param name="definition">Definiton of the imported table.</param>
+        </member>
+        <member name="M:WebAssembly.Import.Table.#ctor(System.String,System.String,System.UInt32,System.Nullable{System.UInt32})">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Import.Table"/> instance with the provided parameters.
+            </summary>
+            <param name="module">The module portion of the name.</param>
+            <param name="field">The field portion of the name.</param>
+            <param name="minimum">Initial length (in units of table elements or 65,536-byte pages).</param>
+            <param name="maximum">Maximum length (in units of table elements or 65,536-byte pages).</param>
+        </member>
         <member name="M:WebAssembly.Import.Table.ToString">
             <summary>
             Expresses the value of this instance as a string.
@@ -422,6 +497,14 @@
             <summary>
             Creates a new <see cref="T:WebAssembly.Import.Memory"/> instance.
             </summary>
+        </member>
+        <member name="M:WebAssembly.Import.Memory.#ctor(System.String,System.String,WebAssembly.Memory)">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Import.Memory"/> instance with the provided parameters.
+            </summary>
+            <param name="module">The module portion of the name.</param>
+            <param name="field">The field portion of the name.</param>
+            <param name="type">Type of the imported memory.</param>
         </member>
         <member name="M:WebAssembly.Import.Memory.ToString">
             <summary>
@@ -453,6 +536,14 @@
             <summary>
             Creates a new <see cref="T:WebAssembly.Import.Global"/> instance.
             </summary>
+        </member>
+        <member name="M:WebAssembly.Import.Global.#ctor(System.String,System.String,WebAssembly.WebAssemblyValueType)">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Import.Global"/> instance with the provided parameters.
+            </summary>
+            <param name="module">The module portion of the name.</param>
+            <param name="field">The field portion of the name.</param>
+            <param name="contentType">Type of the value.</param>
         </member>
         <member name="M:WebAssembly.Import.Global.ToString">
             <summary>
@@ -520,6 +611,12 @@
             Returns a simple hash code based on the value of the instruction.
             </summary>
             <returns>The hash code.</returns>
+        </member>
+        <member name="M:WebAssembly.Instruction.ToString">
+            <summary>
+            Provides a native representation of the instruction; the base implementation returns the opcode in WASM spec format.
+            </summary>
+            <returns>A string representation of this instance.</returns>
         </member>
         <member name="M:WebAssembly.Instruction.ParseInitializerExpression(WebAssembly.Reader)">
             <summary>
@@ -593,6 +690,12 @@
             </summary>
             <returns>The hash code.</returns>
         </member>
+        <member name="M:WebAssembly.Instructions.BlockTypeInstruction.ToString">
+            <summary>
+            Provides a native representation of the instruction.
+            </summary>
+            <returns>A string representation of this instance.</returns>
+        </member>
         <member name="T:WebAssembly.Instructions.Branch">
             <summary>
             Branch to a given label in an enclosing construct.
@@ -631,6 +734,12 @@
             Returns a simple hash code based on the value of the instruction.
             </summary>
             <returns>The hash code.</returns>
+        </member>
+        <member name="M:WebAssembly.Instructions.Branch.ToString">
+            <summary>
+            Provides a native representation of the instruction.
+            </summary>
+            <returns>A string representation of this instance.</returns>
         </member>
         <member name="T:WebAssembly.Instructions.BranchIf">
             <summary>
@@ -829,6 +938,44 @@
             </summary>
             <returns>The hash code.</returns>
         </member>
+        <member name="T:WebAssembly.Instructions.Constant`1">
+            <summary>
+            Base class for the constant instructions <see cref="T:WebAssembly.Instructions.Int32Constant"/>, <see cref="T:WebAssembly.Instructions.Int64Constant"/>, <see cref="T:WebAssembly.Instructions.Float32Constant"/>, and <see cref="T:WebAssembly.Instructions.Float64Constant"/>.
+            </summary>
+            <typeparam name="T">The type of constant, one of <see cref="T:System.Int32"/>, <see cref="T:System.Int64"/>, <see cref="T:System.Single"/>, or <see cref="T:System.Double"/>.</typeparam>
+        </member>
+        <member name="P:WebAssembly.Instructions.Constant`1.Value">
+            <summary>
+            Gets or sets the value of the constant.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.Constant`1.GetHashCode">
+            <summary>
+            Returns a simple hash code based on <see cref="P:WebAssembly.Instructions.Constant`1.Value"/> and the <see cref="T:WebAssembly.OpCode"/> of the instruction.
+            </summary>
+            <returns>The hash code.</returns>
+            <remarks><see cref="P:WebAssembly.Instructions.Constant`1.Value"/> should not be changed while this instance is used as a hash key.</remarks>
+        </member>
+        <member name="M:WebAssembly.Instructions.Constant`1.Equals(WebAssembly.Instruction)">
+            <summary>
+            Determines whether this instruction is identical to another.
+            </summary>
+            <param name="other">The instruction to compare against.</param>
+            <returns>True if they have the same type and value, otherwise false.</returns>
+        </member>
+        <member name="M:WebAssembly.Instructions.Constant`1.Equals(WebAssembly.Instructions.Constant{`0})">
+            <summary>
+            Determines whether this instruction is identical to another.
+            </summary>
+            <param name="other">The instruction to compare against.</param>
+            <returns>True if they have the same type and value, otherwise false.</returns>
+        </member>
+        <member name="M:WebAssembly.Instructions.Constant`1.ToString">
+            <summary>
+            Provides a native representation of the instruction.
+            </summary>
+            <returns>A string representation of this instance.</returns>
+        </member>
         <member name="T:WebAssembly.Instructions.Drop">
             <summary>
             A unary operator that discards the value of its operand.
@@ -929,11 +1076,6 @@
             Always <see cref="F:WebAssembly.OpCode.Float32Constant"/>.
             </summary>
         </member>
-        <member name="P:WebAssembly.Instructions.Float32Constant.Value">
-            <summary>
-            Gets or sets the value of the constant.
-            </summary>
-        </member>
         <member name="M:WebAssembly.Instructions.Float32Constant.#ctor">
             <summary>
             Creates a new <see cref="T:WebAssembly.Instructions.Float32Constant"/> instance.
@@ -943,26 +1085,13 @@
             <summary>
             Creates a new <see cref="T:WebAssembly.Instructions.Float32Constant"/> instance with the provided value.
             </summary>
-            <param name="value">The value of the constant.  This is passed to the <see cref="P:WebAssembly.Instructions.Float32Constant.Value"/> property.</param>
+            <param name="value">The value of the constant.  This is passed to the <see cref="P:WebAssembly.Instructions.Constant`1.Value"/> property.</param>
         </member>
         <member name="M:WebAssembly.Instructions.Float32Constant.#ctor(WebAssembly.Reader)">
             <summary>
             Creates a new <see cref="T:WebAssembly.Instructions.Float32Constant"/> instance from binary data.
             </summary>
             <param name="reader">The source of binary data.</param>
-        </member>
-        <member name="M:WebAssembly.Instructions.Float32Constant.Equals(WebAssembly.Instruction)">
-            <summary>
-            Determines whether this instruction is identical to another.
-            </summary>
-            <param name="other">The instruction to compare against.</param>
-            <returns>True if they have the same type and value, otherwise false.</returns>
-        </member>
-        <member name="M:WebAssembly.Instructions.Float32Constant.GetHashCode">
-            <summary>
-            Returns a simple hash code based on the value of the instruction.
-            </summary>
-            <returns>The hash code.</returns>
         </member>
         <member name="T:WebAssembly.Instructions.Float32ConvertInt32Signed">
             <summary>
@@ -1406,11 +1535,6 @@
             Always <see cref="F:WebAssembly.OpCode.Float64Constant"/>.
             </summary>
         </member>
-        <member name="P:WebAssembly.Instructions.Float64Constant.Value">
-            <summary>
-            Gets or sets the value of the constant.
-            </summary>
-        </member>
         <member name="M:WebAssembly.Instructions.Float64Constant.#ctor">
             <summary>
             Creates a new <see cref="T:WebAssembly.Instructions.Float64Constant"/> instance.
@@ -1420,26 +1544,13 @@
             <summary>
             Creates a new <see cref="T:WebAssembly.Instructions.Float64Constant"/> instance with the provided value.
             </summary>
-            <param name="value">The value of the constant.  This is passed to the <see cref="P:WebAssembly.Instructions.Float64Constant.Value"/> property.</param>
+            <param name="value">The value of the constant.  This is passed to the <see cref="P:WebAssembly.Instructions.Constant`1.Value"/> property.</param>
         </member>
         <member name="M:WebAssembly.Instructions.Float64Constant.#ctor(WebAssembly.Reader)">
             <summary>
             Creates a new <see cref="T:WebAssembly.Instructions.Float64Constant"/> instance from binary data.
             </summary>
             <param name="reader">The source of binary data.</param>
-        </member>
-        <member name="M:WebAssembly.Instructions.Float64Constant.Equals(WebAssembly.Instruction)">
-            <summary>
-            Determines whether this instruction is identical to another.
-            </summary>
-            <param name="other">The instruction to compare against.</param>
-            <returns>True if they have the same type and value, otherwise false.</returns>
-        </member>
-        <member name="M:WebAssembly.Instructions.Float64Constant.GetHashCode">
-            <summary>
-            Returns a simple hash code based on the value of the instruction.
-            </summary>
-            <returns>The hash code.</returns>
         </member>
         <member name="T:WebAssembly.Instructions.Float64ConvertInt32Signed">
             <summary>
@@ -1919,11 +2030,6 @@
             Always <see cref="F:WebAssembly.OpCode.Int32Constant"/>.
             </summary>
         </member>
-        <member name="P:WebAssembly.Instructions.Int32Constant.Value">
-            <summary>
-            Gets or sets the value of the constant.
-            </summary>
-        </member>
         <member name="M:WebAssembly.Instructions.Int32Constant.#ctor">
             <summary>
             Creates a new <see cref="T:WebAssembly.Instructions.Int32Constant"/> instance.
@@ -1933,32 +2039,19 @@
             <summary>
             Creates a new <see cref="T:WebAssembly.Instructions.Int32Constant"/> instance with the provided value.
             </summary>
-            <param name="value">The value of the constant.  This is passed to the <see cref="P:WebAssembly.Instructions.Int32Constant.Value"/> property.</param>
+            <param name="value">The value of the constant. This is passed to the <see cref="P:WebAssembly.Instructions.Constant`1.Value"/> property.</param>
         </member>
         <member name="M:WebAssembly.Instructions.Int32Constant.#ctor(System.UInt32)">
             <summary>
             Creates a new <see cref="T:WebAssembly.Instructions.Int32Constant"/> instance with the provided value.
             </summary>
-            <param name="value">The value of the constant.  This is passed to the <see cref="P:WebAssembly.Instructions.Int32Constant.Value"/> property with an unchecked cast.</param>
+            <param name="value">The value of the constant. This is passed to the <see cref="P:WebAssembly.Instructions.Constant`1.Value"/> property with an unchecked cast.</param>
         </member>
         <member name="M:WebAssembly.Instructions.Int32Constant.#ctor(WebAssembly.Reader)">
             <summary>
             Creates a new <see cref="T:WebAssembly.Instructions.Int32Constant"/> instance from binary data.
             </summary>
             <param name="reader">The source of binary data.</param>
-        </member>
-        <member name="M:WebAssembly.Instructions.Int32Constant.Equals(WebAssembly.Instruction)">
-            <summary>
-            Determines whether this instruction is identical to another.
-            </summary>
-            <param name="other">The instruction to compare against.</param>
-            <returns>True if they have the same type and value, otherwise false.</returns>
-        </member>
-        <member name="M:WebAssembly.Instructions.Int32Constant.GetHashCode">
-            <summary>
-            Returns a simple hash code based on the value of the instruction.
-            </summary>
-            <returns>The hash code.</returns>
         </member>
         <member name="T:WebAssembly.Instructions.Int32CountLeadingZeroes">
             <summary>
@@ -2078,6 +2171,36 @@
         <member name="M:WebAssembly.Instructions.Int32ExclusiveOr.#ctor">
             <summary>
             Creates a new  <see cref="T:WebAssembly.Instructions.Int32ExclusiveOr"/> instance.
+            </summary>
+        </member>
+        <member name="T:WebAssembly.Instructions.Int32Extend16Signed">
+            <summary>
+            Extend a signed 16-bit integer to a 32-bit integer.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.Int32Extend16Signed.OpCode">
+            <summary>
+            Always <see cref="F:WebAssembly.OpCode.Int32Extend16Signed"/>.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.Int32Extend16Signed.#ctor">
+            <summary>
+            Creates a new  <see cref="T:WebAssembly.Instructions.Int32Extend16Signed"/> instance.
+            </summary>
+        </member>
+        <member name="T:WebAssembly.Instructions.Int32Extend8Signed">
+            <summary>
+            Extend a signed 8-bit integer to a 32-bit integer.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.Int32Extend8Signed.OpCode">
+            <summary>
+            Always <see cref="F:WebAssembly.OpCode.Int32Extend8Signed"/>.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.Int32Extend8Signed.#ctor">
+            <summary>
+            Creates a new  <see cref="T:WebAssembly.Instructions.Int32Extend8Signed"/> instance.
             </summary>
         </member>
         <member name="T:WebAssembly.Instructions.Int32GreaterThanOrEqualSigned">
@@ -2560,6 +2683,66 @@
             Creates a new  <see cref="T:WebAssembly.Instructions.Int32TruncateFloat64Unsigned"/> instance.
             </summary>
         </member>
+        <member name="T:WebAssembly.Instructions.Int32TruncateSaturateFloat32Signed">
+            <summary>
+            Truncate (with saturation) a 32-bit float to a signed 32-bit integer.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.Int32TruncateSaturateFloat32Signed.MiscellaneousOpCode">
+            <summary>
+            Always <see cref="F:WebAssembly.MiscellaneousOpCode.Int32TruncateSaturateFloat32Signed"/>.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.Int32TruncateSaturateFloat32Signed.#ctor">
+            <summary>
+            Creates a new  <see cref="T:WebAssembly.Instructions.Int32TruncateSaturateFloat32Signed"/> instance.
+            </summary>
+        </member>
+        <member name="T:WebAssembly.Instructions.Int32TruncateSaturateFloat32Unsigned">
+            <summary>
+            Truncate (with saturation) a 32-bit float to an unsigned 32-bit integer.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.Int32TruncateSaturateFloat32Unsigned.MiscellaneousOpCode">
+            <summary>
+            Always <see cref="F:WebAssembly.MiscellaneousOpCode.Int32TruncateSaturateFloat32Unsigned"/>.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.Int32TruncateSaturateFloat32Unsigned.#ctor">
+            <summary>
+            Creates a new  <see cref="T:WebAssembly.Instructions.Int32TruncateSaturateFloat32Unsigned"/> instance.
+            </summary>
+        </member>
+        <member name="T:WebAssembly.Instructions.Int32TruncateSaturateFloat64Signed">
+            <summary>
+            Truncate (with saturation) a 64-bit float to a signed 32-bit integer.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.Int32TruncateSaturateFloat64Signed.MiscellaneousOpCode">
+            <summary>
+            Always <see cref="T:WebAssembly.Instructions.Int32TruncateSaturateFloat64Signed"/>.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.Int32TruncateSaturateFloat64Signed.#ctor">
+            <summary>
+            Creates a new  <see cref="T:WebAssembly.Instructions.Int32TruncateSaturateFloat64Signed"/> instance.
+            </summary>
+        </member>
+        <member name="T:WebAssembly.Instructions.Int32TruncateSaturateFloat64Unsigned">
+            <summary>
+            Truncate (with saturation) a 64-bit float to an unsigned 32-bit integer.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.Int32TruncateSaturateFloat64Unsigned.MiscellaneousOpCode">
+            <summary>
+            Always <see cref="F:WebAssembly.MiscellaneousOpCode.Int32TruncateSaturateFloat64Unsigned"/>.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.Int32TruncateSaturateFloat64Unsigned.#ctor">
+            <summary>
+            Creates a new  <see cref="T:WebAssembly.Instructions.Int32TruncateSaturateFloat64Unsigned"/> instance.
+            </summary>
+        </member>
         <member name="T:WebAssembly.Instructions.Int32WrapInt64">
             <summary>
             Wrap a 64-bit integer to a 32-bit integer.
@@ -2615,11 +2798,6 @@
             Always <see cref="F:WebAssembly.OpCode.Int64Constant"/>.
             </summary>
         </member>
-        <member name="P:WebAssembly.Instructions.Int64Constant.Value">
-            <summary>
-            Gets or sets the value of the constant.
-            </summary>
-        </member>
         <member name="M:WebAssembly.Instructions.Int64Constant.#ctor">
             <summary>
             Creates a new <see cref="T:WebAssembly.Instructions.Int64Constant"/> instance.
@@ -2629,32 +2807,19 @@
             <summary>
             Creates a new <see cref="T:WebAssembly.Instructions.Int64Constant"/> instance with the provided value.
             </summary>
-            <param name="value">The value of the constant.  This is passed to the <see cref="P:WebAssembly.Instructions.Int64Constant.Value"/> property.</param>
+            <param name="value">The value of the constant.  This is passed to the <see cref="P:WebAssembly.Instructions.Constant`1.Value"/> property.</param>
         </member>
         <member name="M:WebAssembly.Instructions.Int64Constant.#ctor(System.UInt64)">
             <summary>
             Creates a new <see cref="T:WebAssembly.Instructions.Int64Constant"/> instance with the provided value.
             </summary>
-            <param name="value">The value of the constant.  This is passed to the <see cref="P:WebAssembly.Instructions.Int64Constant.Value"/> property.</param>
+            <param name="value">The value of the constant. This is passed to the <see cref="P:WebAssembly.Instructions.Constant`1.Value"/> property with an unchecked cast.</param>
         </member>
         <member name="M:WebAssembly.Instructions.Int64Constant.#ctor(WebAssembly.Reader)">
             <summary>
             Creates a new <see cref="T:WebAssembly.Instructions.Int64Constant"/> instance from binary data.
             </summary>
             <param name="reader">The source of binary data.</param>
-        </member>
-        <member name="M:WebAssembly.Instructions.Int64Constant.Equals(WebAssembly.Instruction)">
-            <summary>
-            Determines whether this instruction is identical to another.
-            </summary>
-            <param name="other">The instruction to compare against.</param>
-            <returns>True if they have the same type and value, otherwise false.</returns>
-        </member>
-        <member name="M:WebAssembly.Instructions.Int64Constant.GetHashCode">
-            <summary>
-            Returns a simple hash code based on the value of the instruction.
-            </summary>
-            <returns>The hash code.</returns>
         </member>
         <member name="T:WebAssembly.Instructions.Int64CountLeadingZeroes">
             <summary>
@@ -2774,6 +2939,51 @@
         <member name="M:WebAssembly.Instructions.Int64ExclusiveOr.#ctor">
             <summary>
             Creates a new  <see cref="T:WebAssembly.Instructions.Int64ExclusiveOr"/> instance.
+            </summary>
+        </member>
+        <member name="T:WebAssembly.Instructions.Int64Extend16Signed">
+            <summary>
+            Extend a signed 16-bit integer to a 64-bit integer.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.Int64Extend16Signed.OpCode">
+            <summary>
+            Always <see cref="F:WebAssembly.OpCode.Int64Extend16Signed"/>.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.Int64Extend16Signed.#ctor">
+            <summary>
+            Creates a new  <see cref="T:WebAssembly.Instructions.Int64Extend16Signed"/> instance.
+            </summary>
+        </member>
+        <member name="T:WebAssembly.Instructions.Int64Extend32Signed">
+            <summary>
+            Extend a signed 32-bit integer to a 64-bit integer.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.Int64Extend32Signed.OpCode">
+            <summary>
+            Always <see cref="F:WebAssembly.OpCode.Int64Extend32Signed"/>.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.Int64Extend32Signed.#ctor">
+            <summary>
+            Creates a new  <see cref="T:WebAssembly.Instructions.Int64Extend32Signed"/> instance.
+            </summary>
+        </member>
+        <member name="T:WebAssembly.Instructions.Int64Extend8Signed">
+            <summary>
+            Extend a signed 8-bit integer to a 64-bit integer.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.Int64Extend8Signed.OpCode">
+            <summary>
+            Always <see cref="F:WebAssembly.OpCode.Int64Extend8Signed"/>.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.Int64Extend8Signed.#ctor">
+            <summary>
+            Creates a new  <see cref="T:WebAssembly.Instructions.Int64Extend8Signed"/> instance.
             </summary>
         </member>
         <member name="T:WebAssembly.Instructions.Int64ExtendInt32Signed">
@@ -3331,6 +3541,66 @@
             Creates a new  <see cref="T:WebAssembly.Instructions.Int64TruncateFloat64Unsigned"/> instance.
             </summary>
         </member>
+        <member name="T:WebAssembly.Instructions.Int64TruncateSaturateFloat32Signed">
+            <summary>
+            Truncate (with saturation) a 32-bit float to a signed 64-bit integer.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.Int64TruncateSaturateFloat32Signed.MiscellaneousOpCode">
+            <summary>
+            Always <see cref="T:WebAssembly.Instructions.Int64TruncateSaturateFloat32Signed"/>.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.Int64TruncateSaturateFloat32Signed.#ctor">
+            <summary>
+            Creates a new  <see cref="T:WebAssembly.Instructions.Int64TruncateSaturateFloat32Signed"/> instance.
+            </summary>
+        </member>
+        <member name="T:WebAssembly.Instructions.Int64TruncateSaturateFloat32Unsigned">
+            <summary>
+            Truncate (with saturation) a 32-bit float to an unsigned 64-bit integer.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.Int64TruncateSaturateFloat32Unsigned.MiscellaneousOpCode">
+            <summary>
+            Always <see cref="F:WebAssembly.MiscellaneousOpCode.Int64TruncateSaturateFloat32Unsigned"/>.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.Int64TruncateSaturateFloat32Unsigned.#ctor">
+            <summary>
+            Creates a new  <see cref="T:WebAssembly.Instructions.Int64TruncateSaturateFloat32Unsigned"/> instance.
+            </summary>
+        </member>
+        <member name="T:WebAssembly.Instructions.Int64TruncateSaturateFloat64Signed">
+            <summary>
+            Truncate (with saturation) a 64-bit float to a signed 64-bit integer.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.Int64TruncateSaturateFloat64Signed.MiscellaneousOpCode">
+            <summary>
+            Always <see cref="T:WebAssembly.Instructions.Int64TruncateSaturateFloat64Signed"/>.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.Int64TruncateSaturateFloat64Signed.#ctor">
+            <summary>
+            Creates a new  <see cref="T:WebAssembly.Instructions.Int64TruncateSaturateFloat64Signed"/> instance.
+            </summary>
+        </member>
+        <member name="T:WebAssembly.Instructions.Int64TruncateSaturateFloat64Unsigned">
+            <summary>
+            Truncate (with saturation) a 64-bit float to an unsigned 64-bit integer.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.Int64TruncateSaturateFloat64Unsigned.MiscellaneousOpCode">
+            <summary>
+            Always <see cref="F:WebAssembly.MiscellaneousOpCode.Int64TruncateSaturateFloat64Unsigned"/>.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.Int64TruncateSaturateFloat64Unsigned.#ctor">
+            <summary>
+            Creates a new  <see cref="T:WebAssembly.Instructions.Int64TruncateSaturateFloat64Unsigned"/> instance.
+            </summary>
+        </member>
         <member name="T:WebAssembly.Instructions.LocalGet">
             <summary>
             Read the current value of a local variable.
@@ -3551,6 +3821,40 @@
             Provides shared functionality for instructions that write to linear memory.
             </summary>
         </member>
+        <member name="T:WebAssembly.Instructions.MiscellaneousInstruction">
+            <summary>
+            Miscellaneous instructions have a prefix byte 0xfc; they are defined by the combination of their <see cref="P:WebAssembly.Instructions.MiscellaneousInstruction.OpCode"/> and <see cref="P:WebAssembly.Instructions.MiscellaneousInstruction.MiscellaneousOpCode"/>.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.MiscellaneousInstruction.OpCode">
+            <summary>
+            Always <see cref="F:WebAssembly.OpCode.MiscellaneousOperationPrefix"/>.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Instructions.MiscellaneousInstruction.MiscellaneousOpCode">
+            <summary>
+            Gets the <see cref="P:WebAssembly.Instructions.MiscellaneousInstruction.MiscellaneousOpCode"/> associated with this instruction.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Instructions.MiscellaneousInstruction.Equals(WebAssembly.Instruction)">
+            <summary>
+            Determines whether this instruction is identical to another.
+            </summary>
+            <param name="other">The instruction to compare against.</param>
+            <returns>True if they have the same type and value, otherwise false.</returns>
+        </member>
+        <member name="M:WebAssembly.Instructions.MiscellaneousInstruction.GetHashCode">
+            <summary>
+            Returns the integer representation of <see cref="P:WebAssembly.Instruction.OpCode"/> as a hash code.
+            </summary>
+            <returns>The hash code.</returns>
+        </member>
+        <member name="M:WebAssembly.Instructions.MiscellaneousInstruction.ToString">
+            <summary>
+            Provides a native representation of the instruction.
+            </summary>
+            <returns>A string representation of this instance.</returns>
+        </member>
         <member name="T:WebAssembly.Instructions.NoOperation">
             <summary>
             No operation, no effect.
@@ -3613,6 +3917,11 @@
             Returns the integer representation of <see cref="P:WebAssembly.Instruction.OpCode"/> as a hash code.
             </summary>
             <returns>The hash code.</returns>
+        </member>
+        <member name="T:WebAssembly.Instructions.TruncateSaturateInstruction">
+            <summary>
+            Provides shared functionality for instructions that do truncation with saturation.
+            </summary>
         </member>
         <member name="T:WebAssembly.Instructions.Unreachable">
             <summary>
@@ -3688,11 +3997,24 @@
             <param name="other">The instruction to compare against.</param>
             <returns>True if they have the same type and value, otherwise false.</returns>
         </member>
+        <member name="M:WebAssembly.Instructions.VariableAccessInstruction.Equals(WebAssembly.Instructions.VariableAccessInstruction)">
+            <summary>
+            Determines whether this instruction is identical to another.
+            </summary>
+            <param name="other">The instruction to compare against.</param>
+            <returns>True if they have the same type and value, otherwise false.</returns>
+        </member>
         <member name="M:WebAssembly.Instructions.VariableAccessInstruction.GetHashCode">
             <summary>
             Returns a simple hash code based on the value of the instruction.
             </summary>
             <returns>The hash code.</returns>
+        </member>
+        <member name="M:WebAssembly.Instructions.VariableAccessInstruction.ToString">
+            <summary>
+            Provides a native representation of the instruction and the variable index.
+            </summary>
+            <returns>A string representation of this instance and the variable index.</returns>
         </member>
         <member name="T:WebAssembly.Local">
             <summary>
@@ -3779,6 +4101,51 @@
             Expresses the value of this instance as a string.
             </summary>
             <returns>A string representation of this instance.</returns>
+        </member>
+        <member name="T:WebAssembly.MiscellaneousOpCode">
+            <summary>
+            Binary miscellaneous operation values.
+            </summary>
+        </member>
+        <member name="F:WebAssembly.MiscellaneousOpCode.Int32TruncateSaturateFloat32Signed">
+            <summary>
+            Truncate (with saturation) a 32-bit float to a signed 32-bit integer.
+            </summary>
+        </member>
+        <member name="F:WebAssembly.MiscellaneousOpCode.Int32TruncateSaturateFloat32Unsigned">
+            <summary>
+            Truncate (with saturation) a 32-bit float to an unsigned 32-bit integer.
+            </summary>
+        </member>
+        <member name="F:WebAssembly.MiscellaneousOpCode.Int32TruncateSaturateFloat64Signed">
+            <summary>
+            Truncate (with saturation) a 64-bit float to a signed 32-bit integer.
+            </summary>
+        </member>
+        <member name="F:WebAssembly.MiscellaneousOpCode.Int32TruncateSaturateFloat64Unsigned">
+            <summary>
+            Truncate (with saturation) a 64-bit float to an unsigned 32-bit integer.
+            </summary>
+        </member>
+        <member name="F:WebAssembly.MiscellaneousOpCode.Int64TruncateSaturateFloat32Signed">
+            <summary>
+            Truncate (with saturation) a 32-bit float to a signed 64-bit integer.
+            </summary>
+        </member>
+        <member name="F:WebAssembly.MiscellaneousOpCode.Int64TruncateSaturateFloat32Unsigned">
+            <summary>
+            Truncate (with saturation) a 32-bit float to an unsigned 64-bit integer.
+            </summary>
+        </member>
+        <member name="F:WebAssembly.MiscellaneousOpCode.Int64TruncateSaturateFloat64Signed">
+            <summary>
+            Truncate (with saturation) a 64-bit float to a signed 64-bit integer.
+            </summary>
+        </member>
+        <member name="F:WebAssembly.MiscellaneousOpCode.Int64TruncateSaturateFloat64Unsigned">
+            <summary>
+            Truncate (with saturation) a 64-bit float to an unsigned 64-bit integer.
+            </summary>
         </member>
         <member name="T:WebAssembly.Module">
             <summary>
@@ -4800,6 +5167,36 @@
             Reinterpret the bits of a 64-bit integer as a 64-bit float.
             </summary>
         </member>
+        <member name="F:WebAssembly.OpCode.Int32Extend8Signed">
+            <summary>
+            Extend a signed 8-bit integer to a 32-bit integer.
+            </summary>
+        </member>
+        <member name="F:WebAssembly.OpCode.Int32Extend16Signed">
+            <summary>
+            Extend a signed 16-bit integer to a 32-bit integer.
+            </summary>
+        </member>
+        <member name="F:WebAssembly.OpCode.Int64Extend8Signed">
+            <summary>
+            Extend a signed 8-bit integer to a 64-bit integer.
+            </summary>
+        </member>
+        <member name="F:WebAssembly.OpCode.Int64Extend16Signed">
+            <summary>
+            Extend a signed 16-bit integer to a 64-bit integer.
+            </summary>
+        </member>
+        <member name="F:WebAssembly.OpCode.Int64Extend32Signed">
+            <summary>
+            Extend a signed 32-bit integer to a 64-bit integer.
+            </summary>
+        </member>
+        <member name="F:WebAssembly.OpCode.MiscellaneousOperationPrefix">
+            <summary>
+            Prefix byte for miscellaneous operations.
+            </summary>
+        </member>
         <member name="T:WebAssembly.OpCodeCharacteristicsAttribute">
             <summary>
             Describes the characteristics of an <see cref="T:WebAssembly.OpCode"/>.
@@ -4871,6 +5268,49 @@
             Expresses the value of this instance as a string.
             </summary>
             <returns>A string representation of this instance.</returns>
+        </member>
+        <member name="T:WebAssembly.Runtime.Compilation.BlockContext">
+            <summary>
+            Remembers stack state at the beginning of a block, and reachability of code.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Runtime.Compilation.CompilationContext.PopStack(WebAssembly.OpCode,System.Collections.Generic.IEnumerable{System.Nullable{WebAssembly.WebAssemblyValueType}},System.Int32)">
+            <summary>
+            Pop multiple types from stack and test whether they match with expected types.
+            The algorithm is based on the validation algorithm described in WASM spec.
+            See: https://webassembly.github.io/spec/core/appendix/algorithm.html
+            </summary>
+            <param name="opcode">OpCode of the instruction (for exception message).</param>
+            <param name="expectedTypes">Sequence of expected types (or null, which indicates any type is accepted)</param>
+            <param name="expectedCount">The number of expected types.</param>
+            <returns>Sequence of actually popped types (or null, which indicates unknown type).</returns>
+        </member>
+        <member name="M:WebAssembly.Runtime.Compilation.CompilationContext.MarkUnreachable(System.Boolean)">
+            <summary>
+            Marks the subsequent instructions as unreachable.
+            </summary>
+        </member>
+        <member name="T:WebAssembly.Runtime.Compilation.NativeExportAttribute">
+            <summary>
+            Describes the raw, original export that was converted to a .NET instance member during compilation.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Runtime.Compilation.NativeExportAttribute.Kind">
+            <summary>
+            The original export type.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Runtime.Compilation.NativeExportAttribute.Name">
+            <summary>
+            The original export name, which may be different from the .NET name if the name isn't C#-compatible.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Runtime.Compilation.NativeExportAttribute.#ctor(WebAssembly.ExternalKind,System.String)">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Runtime.Compilation.NativeExportAttribute"/> from the provided parameters.
+            </summary>
+            <param name="kind">The original export type.</param>
+            <param name="name">Creates a new <see cref="T:WebAssembly.Runtime.Compilation.NativeExportAttribute"/> from the provided parameters.</param>
         </member>
         <member name="T:WebAssembly.Runtime.InstanceCreator`1">
             <summary>
@@ -5150,6 +5590,15 @@
             <param name="setter">The method to use for write requests, or null (the default).</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="getter"/> cannot be null.</exception>
         </member>
+        <member name="M:WebAssembly.Runtime.GlobalImport.#ctor(System.Delegate,System.Delegate)">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Runtime.GlobalImport"/> instance with the provided delegates.
+            </summary>
+            <param name="getter">The method to use for read requests.</param>
+            <param name="setter">The method to use for write requests, or null (the default).</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="getter"/> cannot be null.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="getter"/> and/or <paramref name="setter"/> are incompatible.</exception>
+        </member>
         <member name="T:WebAssembly.Runtime.Helpers">
             <summary>
             Helper logic for compiled WebAssembly modules.  Do not directly use these methods in your code.
@@ -5162,16 +5611,74 @@
         </member>
         <member name="T:WebAssembly.Runtime.ImportDictionary">
             <summary>
-            A helper dictionary to make it easier to gather imports for the compiler.
+            No members of its own, essentially an alias for a dictionary of dictionaries,
+            both keyed by strings, with the inner dictionary having values of <see cref="T:WebAssembly.Runtime.RuntimeImport"/>.
             </summary>
         </member>
-        <member name="M:WebAssembly.Runtime.ImportDictionary.Add(System.String,System.String,WebAssembly.Runtime.RuntimeImport)">
+        <member name="M:WebAssembly.Runtime.ImportDictionary.#ctor">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Runtime.ImportDictionary"/> instance.
+            </summary>
+        </member>
+        <member name="T:WebAssembly.Runtime.ImportDictionaryExtensions">
+            <summary>
+            Provides helper functions to dictionaries compatible with compilation.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Runtime.ImportDictionaryExtensions.Add(System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IDictionary{System.String,WebAssembly.Runtime.RuntimeImport}},System.String,System.String,WebAssembly.Runtime.RuntimeImport)">
             <summary>
             Adds a runtime import with the provided module and field names.
             </summary>
+            <param name="dictionary">The dictionary instance to receive the values.</param>
             <param name="moduleName">The first part of the two-part name.</param>
             <param name="fieldName">The second part of the two-part name.</param>
             <param name="value">The import to add.</param>
+        </member>
+        <member name="M:WebAssembly.Runtime.ImportDictionaryExtensions.AddFromExports``1(System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IDictionary{System.String,WebAssembly.Runtime.RuntimeImport}},System.String,``0)">
+            <summary>
+            Adds exports from a compiled instance to a compatible import dictionary.
+            </summary>
+            <param name="dictionary">The dictionary instance to receive the values.</param>
+            <param name="moduleName">The first part of the two-part name; the second part comes from the export.</param>
+            <param name="exports">The source of imports.</param>
+        </member>
+        <member name="T:WebAssembly.Runtime.ImportException">
+            <summary>
+            Indicates that something provided as an import doesn't match the type expected by the WASM.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Runtime.ImportException.#ctor">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Runtime.ImportException"/> with a default message.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Runtime.ImportException.#ctor(System.String)">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Runtime.ImportException"/> with a default message.
+            </summary>
+        </member>
+        <member name="T:WebAssembly.Runtime.LabelTypeMismatchException">
+            <summary>
+            Used by the compiler to indicate that the labels of a br_table instruction does not have the same type.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Runtime.LabelTypeMismatchException.#ctor(WebAssembly.OpCode,WebAssembly.BlockType,WebAssembly.BlockType)">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Runtime.LabelTypeMismatchException"/> with the provided parameters.
+            </summary>
+            <param name="opCode">The operation attempted.</param>
+            <param name="expected">The expected label type (type of the default label).</param>
+            <param name="actual">The actual label type.</param>
+        </member>
+        <member name="P:WebAssembly.Runtime.LabelTypeMismatchException.Expected">
+            <summary>
+            The expected label type (type of the default label).
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Runtime.LabelTypeMismatchException.Actual">
+            <summary>
+            The actual label type.
+            </summary>
         </member>
         <member name="T:WebAssembly.Runtime.MemoryAccessOutOfRangeException">
             <summary>
@@ -5258,6 +5765,18 @@
             </summary>
             <returns>A string representation of this instance.</returns>
         </member>
+        <member name="T:WebAssembly.Runtime.NameCleaner">
+            <summary>
+            Provides a means to convert an unrestricted WebAssembly name to a C#-compatible one.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Runtime.NameCleaner.CleanName(System.String)">
+            <summary>
+            Ensures the provided name is compatible with C#.
+            </summary>
+            <param name="value">The name to convert, if necessary.</param>
+            <returns><paramref name="value"/> or a new string if a change was needed.</returns>
+        </member>
         <member name="T:WebAssembly.Runtime.OpCodeCompilationException">
             <summary>
             Used by the compiler to describe a problem encountered while compiling an <see cref="P:WebAssembly.Runtime.OpCodeCompilationException.OpCode"/>.
@@ -5270,9 +5789,21 @@
             <param name="opCode">The operation attempted.</param>
             <param name="message">An explanation of the problem, concatenated with <paramref name="opCode"/> and passed to the base as the message.</param>
         </member>
+        <member name="M:WebAssembly.Runtime.OpCodeCompilationException.#ctor(WebAssembly.MiscellaneousOpCode,System.String)">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Runtime.OpCodeCompilationException"/> with the provided parameters.
+            </summary>
+            <param name="miscellaneousOpCode">The miscellaneous operation attempted.</param>
+            <param name="message">An explanation of the problem, concatenated with <paramref name="miscellaneousOpCode"/> and passed to the base as the message.</param>
+        </member>
         <member name="P:WebAssembly.Runtime.OpCodeCompilationException.OpCode">
             <summary>
             The operation attempted.
+            </summary>
+        </member>
+        <member name="P:WebAssembly.Runtime.OpCodeCompilationException.MiscellaneousOpCode">
+            <summary>
+            The miscellaneous operation attempted, if <see cref="P:WebAssembly.Runtime.OpCodeCompilationException.OpCode"/> is <see cref="F:WebAssembly.OpCode.MiscellaneousOperationPrefix"/>.
             </summary>
         </member>
         <member name="T:WebAssembly.Runtime.RuntimeException">
@@ -5294,6 +5825,12 @@
         <member name="P:WebAssembly.Runtime.RuntimeImport.Kind">
             <summary>
             The type of import.
+            </summary>
+        </member>
+        <member name="M:WebAssembly.Runtime.RuntimeImport.FromCompiledExports``1(``0)">
+            <summary>
+            Uses the <see cref="T:WebAssembly.Runtime.Compilation.NativeExportAttribute"/>s on a compiled export to convert it to a sequence of runtime imports.
+            This can be used to help link one WebAssembly instance to another.
             </summary>
         </member>
         <member name="T:WebAssembly.Runtime.StackParameterMismatchException">
@@ -5355,6 +5892,14 @@
             <param name="minimum">The minimum acceptable stack height.</param>
             <param name="actual">The actual stack height at the time the operation was attempted.</param>
         </member>
+        <member name="M:WebAssembly.Runtime.StackTooSmallException.#ctor(WebAssembly.MiscellaneousOpCode,System.Int32,System.Int32)">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Runtime.StackTooSmallException"/> with the provided parameters.
+            </summary>
+            <param name="miscellaneousOpCode">The miscellaneous operation attempted.</param>
+            <param name="minimum">The minimum acceptable stack height.</param>
+            <param name="actual">The actual stack height at the time the operation was attempted.</param>
+        </member>
         <member name="P:WebAssembly.Runtime.StackTooSmallException.Minimum">
             <summary>
             The minimum acceptable stack height.
@@ -5375,6 +5920,14 @@
             Creates a new <see cref="T:WebAssembly.Runtime.StackTypeInvalidException"/> with the provided parameters.
             </summary>
             <param name="opCode">The operation attempted.</param>
+            <param name="expected">The expected value type.</param>
+            <param name="actual">The actual value type.</param>
+        </member>
+        <member name="M:WebAssembly.Runtime.StackTypeInvalidException.#ctor(WebAssembly.MiscellaneousOpCode,WebAssembly.WebAssemblyValueType,WebAssembly.WebAssemblyValueType)">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Runtime.StackTypeInvalidException"/> with the provided parameters.
+            </summary>
+            <param name="miscellaneousOpCode">The miscellaneous operation attempted.</param>
             <param name="expected">The expected value type.</param>
             <param name="actual">The actual value type.</param>
         </member>
@@ -5406,19 +5959,6 @@
         <member name="T:WebAssembly.Runtime.UnmanagedMemory">
             <summary>
             Implements a WebAssembly linear memory resource using unmanaged memory.
-            </summary>
-        </member>
-        <member name="T:WebAssembly.Runtime.UnmanagedMemory.ZeroMemoryDelegate">
-            <summary>
-            Sets a <paramref name="length"/> of bytes to zero at a <paramref name="destination"/> memory location.
-            </summary>
-            <param name="destination">The write target memory location.</param>
-            <param name="length">The count of bytes to be copied.</param>
-        </member>
-        <member name="F:WebAssembly.Runtime.UnmanagedMemory.ZeroMemory">
-            <summary>
-            Sets a length of bytes to the given value at a destination memory location.
-            See <see cref="T:WebAssembly.Runtime.UnmanagedMemory.ZeroMemoryDelegate"/> for details.
             </summary>
         </member>
         <member name="M:WebAssembly.Runtime.UnmanagedMemory.#ctor(System.UInt32,System.Nullable{System.UInt32})">
@@ -5564,6 +6104,13 @@
             <summary>
             Creates a new <see cref="T:WebAssembly.Table"/> instance.
             </summary>
+        </member>
+        <member name="M:WebAssembly.Table.#ctor(System.UInt32,System.Nullable{System.UInt32})">
+            <summary>
+            Creates a new <see cref="T:WebAssembly.Table"/> instance with the provided <see cref="P:WebAssembly.ResizableLimits.Minimum"/> and <see cref="P:WebAssembly.ResizableLimits.Maximum"/> values.
+            </summary>
+            <param name="minimum">Initial length (in units of table elements or 65,536-byte pages).</param>
+            <param name="maximum">Maximum length (in units of table elements or 65,536-byte pages).</param>
         </member>
         <member name="M:WebAssembly.Table.#ctor(WebAssembly.Reader)">
             <summary>
