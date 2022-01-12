@@ -40,7 +40,15 @@ public class Run : MonoBehaviour
 
         var ptr = instance.Exports.main();
         Debug.Log(ptr);
+        var str = ReadString(memory, ptr);
+         Debug.Log(str);
+        CallMethod(str);
 
+        // TODO: Call C# method from WebAssembly 
+    }
+
+    string ReadString(UnmanagedMemory memory, int ptr)
+    {
         var str = "";
 
         for (var i = 0; true; i++)
@@ -52,9 +60,12 @@ public class Run : MonoBehaviour
             }
             str += (char)v;
         }
-        Debug.Log(str);
+        return str;
+    }
 
-        // TODO: Call C# method from WebAssembly
+    void CallMethod(string signature)
+    {
+          
     }
 
     void Update()
