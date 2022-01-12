@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using UnityEngine;
  using WebAssembly; // Acquire from https://www.nuget.org/packages/WebAssembly
 using WebAssembly.Runtime;
@@ -12,7 +13,7 @@ public abstract class WasmInterface
 }
 
 public class Run : MonoBehaviour
-{
+{ 
     public TextAsset moduleFile;
     private Instance<WasmInterface> instance;
 
@@ -38,7 +39,11 @@ public class Run : MonoBehaviour
         });
 
         var ptr = instance.Exports.main();
+
+        var v = Marshal.ReadInt32(memory.Start + ptr);
+         
         Debug.Log(ptr);
+        Debug.Log(v);
     }
 
     void Update()
